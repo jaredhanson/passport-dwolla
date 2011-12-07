@@ -1,0 +1,16 @@
+{
+  "name": "passport-dwolla",
+  "version": "0.1.0",
+  "description": "Dwolla authentication strategy for Passport.",
+  "author": "Jared Hanson <jaredhanson@gmail.com> (http://www.jaredhanson.net/)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jaredhanson/passport-dwolla.git"
+  },
+  "main": "./lib/passport-dwolla",
+  "dependencies": {
+    "passport-oauth": ">= 0.1.2"
+  },
+  "engines": { "node": ">= 0.4.0" },
+  "keywords": ["passport", "dwolla", "auth", "authn", "authentication", "identity"]
+}
