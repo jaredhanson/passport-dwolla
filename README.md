@@ -3,6 +3,57 @@
 [Passport](https://github.com/jaredhanson/passport) strategy for authenticating
 with Dwolla using the OAuth 2.0 API.
 
+## Installation
+
+    $ npm install passport-dwolla
+
+## Usage
+
+#### Configure Strategy
+
+The Dwolla authentication strategy authenticates users using a Dwolla account
+and OAuth 2.0 tokens.  The strategy requires a `verify` callback, which accepts
+these credentials and calls `done` providing a user, as well as `options`
+specifying a client ID, client secret, and callback URL.
+
+    passport.use(new DwollaStrategy({
+        clientID: DWOLLA_KEY,
+        clientSecret: DWOLLA_SECRET,
+        callbackURL: "http://127.0.0.1:3000/auth/dwolla/callback"
+      },
+      function(accessToken, refreshToken, profile, done) {
+        User.findOrCreate({ dwollaId: profile.id }, function (err, user) {
+          return done(err, user);
+        });
+      }
+    ));
+
+#### Authenticate Requests
+
+Use `passport.authenticate()`, specifying the `'dwolla'` strategy, to
+authenticate requests.
+
+For example, as route middleware in an [Express](http://expressjs.com/)
+application:
+
+    app.get('/auth/dwolla',
+      passport.authenticate('dwolla', { scope: 'AccountInfoFull' }),
+      function(req, res){
+        // The request will be redirected to Dwolla for authentication, so
+        // this function will not be called.
+      });
+
+    app.get('/auth/dwolla/callback', 
+      passport.authenticate('dwolla', { failureRedirect: '/login' }),
+      function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/');
+      });
+
+#### Examples
+
+For a complete, working example, refer to the [login example](https://github.com/jaredhanson/passport-dwolla/tree/master/examples/login).
+
 ## Credits
 
   - [Jared Hanson](http://github.com/jaredhanson)
