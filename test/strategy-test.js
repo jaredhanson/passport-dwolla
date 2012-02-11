@@ -29,7 +29,7 @@ vows.describe('DwollaStrategy').addBatch({
       function() {});
       
       // mock
-      strategy._oauth2.getProtectedResource = function(url, accessToken, callback) {
+      strategy._oauth2.get = function(url, accessToken, callback) {
         var body = '{ \
             "City": "Des Moines", \
             "Id": "812-111-1111", \
@@ -66,6 +66,12 @@ vows.describe('DwollaStrategy').addBatch({
         assert.equal(profile.id, '812-111-1111');
         assert.equal(profile.displayName, 'Test User');
       },
+      'should set raw property' : function(err, profile) {
+        assert.isString(profile._raw);
+      },
+      'should set json property' : function(err, profile) {
+        assert.isObject(profile._json);
+      },
     },
   },
   
@@ -78,7 +84,7 @@ vows.describe('DwollaStrategy').addBatch({
       function() {});
       
       // mock
-      strategy._oauth2.getProtectedResource = function(url, accessToken, callback) {
+      strategy._oauth2.get = function(url, accessToken, callback) {
         callback(new Error('something-went-wrong'));
       }
       
