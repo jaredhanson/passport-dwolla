@@ -1,7 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 var util = require('util');
-var DwollaStrategy = require('passport-dwolla/strategy');
+var DwollaStrategy = require('../lib/strategy');
 
 
 vows.describe('DwollaStrategy').addBatch({
