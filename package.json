@@ -1,6 +1,6 @@
 {
   "name": "passport-dwolla",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Dwolla authentication strategy for Passport.",
   "keywords": ["passport", "dwolla", "auth", "authn", "authentication", "identity"],
   "repository": {
