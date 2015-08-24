@@ -7,9 +7,6 @@ var dwolla = require('..');
 vows.describe('passport-dwolla').addBatch({
   
   'module': {
-    'should report a version': function (x) {
-      assert.isString(dwolla.version);
-    },
   },
   
 }).export(module);
