@@ -20,12 +20,13 @@ unobtrusively integrated into any application or framework that supports
 The Dwolla authentication strategy authenticates users using a Dwolla account
 and OAuth 2.0 tokens.  The strategy requires a `verify` callback, which accepts
 these credentials and calls `done` providing a user, as well as `options`
-specifying a client ID, client secret, and callback URL.
+specifying a client ID, client secret, callback URL, and sandbox boolean.
 
     passport.use(new DwollaStrategy({
         clientID: DWOLLA_KEY,
         clientSecret: DWOLLA_SECRET,
-        callbackURL: "http://127.0.0.1:3000/auth/dwolla/callback"
+        callbackURL: "http://127.0.0.1:3000/auth/dwolla/callback",
+        sandbox: true
       },
       function(accessToken, refreshToken, profile, done) {
         User.findOrCreate({ dwollaId: profile.id }, function (err, user) {
